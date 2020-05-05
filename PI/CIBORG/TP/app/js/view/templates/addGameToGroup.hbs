@@ -1,0 +1,26 @@
+<div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+           
+          {{#each this.groups}}
+                <div class="col-md-4">
+                  <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                      <p class="card-text">Name : {{name}}</p>
+                      <p class="card-text">Description : {{description}}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <a href='#specificGroup/{{id}}'> 
+                            <button class="btn btn-outline-secondary" id='{{id}}'>Group details </button>
+                          </a> 
+                          <button class="addToGroup btn btn btn-primary" id='{{id}}'>Add to Group</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {{/each}}
+
+          </div>
+        </div>
+</div>

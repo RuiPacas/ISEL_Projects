@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/favoriteListName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/favoriteName">
+    </EditText>
+
+    <EditText
+        android:id="@+id/publisherName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/publisher">
+    </EditText>
+
+    <EditText
+        android:id="@+id/designerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/designer">
+    </EditText>
+
+    <Button
+        android:id="@+id/mechanics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mechanics" />
+
+    <Button
+        android:id="@+id/categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/categories" />
+
+    <Button
+        android:id="@+id/createFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/createfavorite" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoritesLists"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

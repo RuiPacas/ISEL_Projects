@@ -1,0 +1,46 @@
+@startuml
+package result{
+   interface Result{
+        +showPlain(PrintStream out)::void
+        +showHtml(PrintStream out)::void
+        +getStatusCode()::HttpStatusCode
+    }
+    class ExitResult{
+        +showPlain(PrintStream out)::void
+        +showHtml(PrintStream out)::void
+        +getStatusCode()::HttpStatusCode
+    }
+    class GetCoursesResult{
+        -List<Course> courses
+        -String title
+        +showPlain(PrintStream out)::void
+        +showHtml(PrintStream out)::void
+        +getStatusCode()::HttpStatusCode
+    }
+    class GetProgrammesResult{
+            -List<Programme> programmes
+            -String title
+            +showPlain(PrintStream out)::void
+            +showHtml(PrintStream out)::void
+            +getStatusCode()::HttpStatusCode
+    }
+    class PrefixResult{
+           -...
+           -String title
+           +showPlain(PrintStream out)::void
+           +showHtml(PrintStream out)::void
+            +getStatusCode()::HttpStatusCode
+   }
+    class Message{
+       -String result
+       +showPlain(PrintStream out)::void
+       +showHtml(PrintStream out)::void
+       +getStatusCode()::HttpStatusCode
+    }
+    Result<|.down.ExitResult
+    Result<|.down.GetCoursesResult
+    Result<|.down.PrefixResult
+    Result<|.down.GetProgrammesResult
+    Result<|.down.Message
+}
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+package handlers{
+    interface CommandHandler{
+           +executeCommand(HashMap<String, LinkedList<String>> values)::Result
+           +getMethod()::Method
+           +getTemplate()::Template
+    }
+
+    abstract GetHandlerBase{
+          +getMethod()::Method
+    }
+    abstract PostHandlerBase{
+          +getMethod()::Method
+    }
+    class Exit{
+                +executeCommand(HashMap<String, LinkedList<String>> values)::Result
+                +getTemplate()::Template
+                +getMethod()::Method
+    }
+    class Option{
+                +executeCommand(HashMap<String, LinkedList<String>> values)::Result
+                +getTemplate()::Template
+                +getMethod()::Method
+        }
+    class Time{
+        +executeCommand(HashMap<String, LinkedList<String>> values)::Result
+        +getTemplate()::Template
+        +getMethod()::Method
+    }
+
+
+    class GetHandlers{
+         +executeCommand(HashMap<String, LinkedList<String>> values)::Result
+         +getTemplate()::Template
+    }
+    class PostHandlers{
+        +executeCommand(HashMap<String, LinkedList<String>> values)::Result
+        +getTemplate()::Template
+    }
+    CommandHandler<|.down-GetHandlerBase
+    CommandHandler<|.down-PostHandlerBase
+    CommandHandler<|.down-Exit
+    CommandHandler<|..left-Time
+    CommandHandler<|..right-Option
+    GetHandlerBase<|-down- GetHandlers
+    PostHandlerBase<|-down- PostHandlers
+}
+
+@enduml

@@ -1,0 +1,34 @@
+<input class="form-control mb-2" type="text" id="groupName" name="groupName" placeholder="Name">
+<input class="form-control mb-2" type="text" id="groupDescription" name="groupDescription" placeholder="Description">
+<button class="btn btn-secondary" id="createGroupButton">Create Group</button>
+
+<div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+           
+          {{#each this.groups}}
+                <div class="col-md-4">
+                  <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                      <p class="card-text">Name : {{name}}</p>
+                      <p class="card-text">Description : {{description}}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <a href='#specificGroup/{{id}}'> 
+                            <button class="btn btn-outline-secondary" id='{{id}}'>Group details </button>
+                          </a> 
+                          <button class="deleteGroup btn btn-outline-danger" id='{{id}}'>Delete group</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {{/each}}
+
+          </div>
+        </div>
+</div>
+
+
+
+

@@ -1,0 +1,615 @@
+
+*******************************************************************************
+                                    Serial
+*******************************************************************************
+
+CUPL(WM)        5.0a Serial# 60008009
+Device          v750c  Library DLIB-h-40-2
+Created         Fri May 18 16:46:26 2018
+Name            Serial Receiver 
+Partno          00 
+Revision        01 
+Date            22/03/2018 
+Designer        Engineer 
+Company         CCISEL 
+Assembly        None 
+Location        
+
+===============================================================================
+                            Expanded Product Terms
+===============================================================================
+
+Busy =>
+    !K1 & K2
+
+D0.d  =>
+    !K0 & K1 & !K2 & SDX
+  # D0 & K2
+  # D0 & !K1
+  # D0 & K0
+
+D0.ar  =>
+    0 
+
+D0.ckmux  =>
+    SCLK
+
+D0.sp  =>
+    0 
+
+D1.d  =>
+    D0 & !K0 & K1 & !K2
+  # D1 & K2
+  # D1 & !K1
+  # D1 & K0
+
+D1.ar  =>
+    0 
+
+D1.ckmux  =>
+    SCLK
+
+D1.sp  =>
+    0 
+
+D2.d  =>
+    D1 & !K0 & K1 & !K2
+  # D2 & K2
+  # D2 & !K1
+  # D2 & K0
+
+D2.ar  =>
+    0 
+
+D2.ckmux  =>
+    SCLK
+
+D2.sp  =>
+    0 
+
+D3.d  =>
+    D2 & !K0 & K1 & !K2
+  # D3 & K2
+  # D3 & !K1
+  # D3 & K0
+
+D3.ar  =>
+    0 
+
+D3.ckmux  =>
+    SCLK
+
+D3.sp  =>
+    0 
+
+D4.d  =>
+    D3 & !K0 & K1 & !K2
+  # D4 & K2
+  # D4 & !K1
+  # D4 & K0
+
+D4.ar  =>
+    0 
+
+D4.ckmux  =>
+    SCLK
+
+D4.sp  =>
+    0 
+
+D5.d  =>
+    D4 & !K0 & K1 & !K2
+  # D5 & K2
+  # D5 & !K1
+  # D5 & K0
+
+D5.ar  =>
+    0 
+
+D5.ckmux  =>
+    SCLK
+
+D5.sp  =>
+    0 
+
+DxVal =>
+    !K0 & !K1 & K2
+
+K0.d  =>
+    K1 & !K2 & !T0 & T1 & T2
+  # !K1 & K2 & accept
+  # K0 & K1 & !K2 & !T2
+  # K0 & K1 & !K2 & !T1
+  # !K2 & !X0 & X1
+
+K0.ar  =>
+    0 
+
+K0.ck  =>
+    !MCLK
+
+K0.sp  =>
+    0 
+
+K1.d  =>
+    K0 & K1 & !K2 & !T0 & T1 & T2 & X0 & X1
+  # K0 & K1 & !K2 & !T1 & T2 & X0 & X1
+  # K0 & K1 & !K2 & !T2 & X0 & X1
+  # K0 & K1 & !K2 & !T0 & T1 & T2 & !X1
+  # K0 & K1 & !K2 & !T1 & T2 & !X1
+  # K0 & K1 & !K2 & !T2 & !X1
+  # !K0 & K1 & !K2 & !X1
+  # !K0 & K1 & !K2 & X0
+  # K0 & !K1 & !K2 & !X1
+  # K0 & !K1 & !K2 & X0
+
+K1.ar  =>
+    0 
+
+K1.ck  =>
+    !MCLK
+
+K1.sp  =>
+    0 
+
+K2.d  =>
+    K0 & K1 & !K2 & T0 & T1 & T2 & !X1 & !Y0
+  # K0 & K1 & !K2 & T0 & T1 & T2 & X0 & !Y0
+  # !K1 & K2 & accept
+  # !K0 & !K1 & K2
+
+K2.ar  =>
+    0 
+
+K2.ck  =>
+    !MCLK
+
+K2.sp  =>
+    0 
+
+RxErr =>
+    Y0
+
+Start =>
+    !X0 & X1
+
+T0.t  =>
+    1 
+
+T0.ar  =>
+    K0 & !K1 & !K2
+
+T0.ckmux  =>
+    SCLK
+
+T0.sp  =>
+    0 
+
+T1.t  =>
+    T0
+
+T1.ar  =>
+    K0 & !K1 & !K2
+
+T1.ckmux  =>
+    SCLK
+
+T1.sp  =>
+    0 
+
+T2.t  =>
+    T0 & T1
+
+T2.ar  =>
+    K0 & !K1 & !K2
+
+T2.ckmux  =>
+    SCLK
+
+T2.sp  =>
+    0 
+
+Wr =>
+    !K0 & K1 & !K2
+
+X0.d  =>
+    !SCLK & SDX & !X1
+
+X0.ar  =>
+    0 
+
+X0.ck  =>
+    MCLK
+
+X0.sp  =>
+    0 
+
+X1.d  =>
+    !SCLK & !SDX & X0 & !X1
+
+X1.ar  =>
+    0 
+
+X1.ck  =>
+    MCLK
+
+X1.sp  =>
+    0 
+
+Y0.t  =>
+    SDX
+
+Y0.ar  =>
+    K0 & !K1 & !K2
+
+Y0.ckmux  =>
+    SCLK
+
+Y0.sp  =>
+    0 
+
+dFlag =>
+    !T0 & T1 & T2
+
+init =>
+    K0 & !K1 & !K2
+
+pFlag =>
+    T0 & T1 & T2
+
+Busy.oe  =>
+    1 
+
+D0.oe  =>
+    1 
+
+D1.oe  =>
+    1 
+
+D2.oe  =>
+    1 
+
+D3.oe  =>
+    1 
+
+D4.oe  =>
+    1 
+
+D5.oe  =>
+    1 
+
+DxVal.oe  =>
+    1 
+
+K0.oe  =>
+    1 
+
+K1.oe  =>
+    1 
+
+
+===============================================================================
+                                 Symbol Table
+===============================================================================
+
+Pin Variable                                    Pterms   Max     Min    
+Pol   Name              Ext     Pin     Type     Used   Pterms  Level   
+--- --------            ---     ---     ----    ------  ------  -----   
+
+    Busy                        23       V        1       8       4     
+    D0                          14       V        -       -       -     
+    D0                  d       14       X        4       8       4     
+    D0                  ar      14       X        1       1       1     
+    D0                  ckmux   14       X        1       1       1     
+    D0                  sp      14       X        1       1       1     
+    D1                          15       V        -       -       -     
+    D1                  d       15       X        4       10      4     
+    D1                  ar      15       X        1       1       1     
+    D1                  ckmux   15       X        1       1       1     
+    D1                  sp      15       X        1       1       1     
+    D2                          16       V        -       -       -     
+    D2                  d       16       X        4       12      4     
+    D2                  ar      16       X        1       1       1     
+    D2                  ckmux   16       X        1       1       1     
+    D2                  sp      16       X        1       1       1     
+    D3                          17       V        -       -       -     
+    D3                  d       17       X        4       14      4     
+    D3                  ar      17       X        1       1       1     
+    D3                  ckmux   17       X        1       1       1     
+    D3                  sp      17       X        1       1       1     
+    D4                          18       V        -       -       -     
+    D4                  d       18       X        4       16      4     
+    D4                  ar      18       X        1       1       1     
+    D4                  ckmux   18       X        1       1       1     
+    D4                  sp      18       X        1       1       1     
+    D5                          19       V        -       -       -     
+    D5                  d       19       X        4       16      4     
+    D5                  ar      19       X        1       1       1     
+    D5                  ckmux   19       X        1       1       1     
+    D5                  sp      19       X        1       1       1     
+    DxVal                       22       V        1       10      4     
+    K0                          20       V        -       -       -     
+    K0                  d       20       X        5       14      4     
+    K0                  ar      20       X        1       1       1     
+    K0                  ck      20       X        1       1       1     
+    K0                  sp      20       X        1       1       1     
+    K1                          21       V        -       -       -     
+    K1                  d       21       X        10      12      4     
+    K1                  ar      21       X        1       1       1     
+    K1                  ck      21       X        1       1       1     
+    K1                  sp      21       X        1       1       1     
+    K2                          31       N        -       -       -     
+    K2                  d       31       M        4       7       4     
+    K2                  ar      31       M        1       1       1     
+    K2                  ck      31       M        1       1       1     
+    K2                  sp      31       M        1       1       1     
+    MCLK                        2        V        -       -       -     
+    RxErr                       0        I        1       -       -     
+    SCLK                        1        V        -       -       -     
+    SDX                         3        V        -       -       -     
+    Start                       0        I        1       -       -     
+    T0                          27       N        -       -       -     
+    T0                  t       27       M        1       6       4     
+    T0                  ar      27       M        1       1       1     
+    T0                  ckmux   27       M        1       1       1     
+    T0                  sp      27       M        1       1       1     
+    T1                          28       N        -       -       -     
+    T1                  t       28       M        1       7       4     
+    T1                  ar      28       M        1       1       1     
+    T1                  ckmux   28       M        1       1       1     
+    T1                  sp      28       M        1       1       1     
+    T2                          29       N        -       -       -     
+    T2                  t       29       M        1       8       4     
+    T2                  ar      29       M        1       1       1     
+    T2                  ckmux   29       M        1       1       1     
+    T2                  sp      29       M        1       1       1     
+    Wr                          0        I        1       -       -     
+    X0                          25       N        -       -       -     
+    X0                  d       25       M        1       4       4     
+    X0                  ar      25       M        1       1       1     
+    X0                  ck      25       M        1       1       1     
+    X0                  sp      25       M        1       1       1     
+    X1                          26       N        -       -       -     
+    X1                  d       26       M        1       5       4     
+    X1                  ar      26       M        1       1       1     
+    X1                  ck      26       M        1       1       1     
+    X1                  sp      26       M        1       1       1     
+    Y0                          33       N        -       -       -     
+    Y0                  t       33       M        1       5       4     
+    Y0                  ar      33       M        1       1       1     
+    Y0                  ckmux   33       M        1       1       1     
+    Y0                  sp      33       M        1       1       1     
+    accept                      4        V        -       -       -     
+    dFlag                       0        I        1       -       -     
+    init                        0        I        1       -       -     
+    pFlag                       0        I        1       -       -     
+    Busy                oe      23       D        1       1       0     
+    D0                  oe      14       D        1       1       0     
+    D1                  oe      15       D        1       1       0     
+    D2                  oe      16       D        1       1       0     
+    D3                  oe      17       D        1       1       0     
+    D4                  oe      18       D        1       1       0     
+    D5                  oe      19       D        1       1       0     
+    DxVal               oe      22       D        1       1       0     
+    K0                  oe      20       D        1       1       0     
+    K1                  oe      21       D        1       1       0     
+
+
+LEGEND    D : default variable         F : field      G : group
+          I : intermediate variable    N : node       M : extended node
+          U : undefined                V : variable   X : extended variable
+          T : function
+
+
+===============================================================================
+                                   Fuse Plot
+===============================================================================
+
+SP 
+ 14280 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+
+Pin #23 Node 34 ,44  14364 Mode  -x-  14395 xxxx 
+ 00000 ----------------------------------------------------x----------x-------------------- 
+ 00084 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00168 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00252 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00336 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00420 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00504 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00588 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00672 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00756 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00840 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00924 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01008 ------------------------------------------------------------------------------------ 
+Pin #22 Node 33 ,43  14367 Mode  ---  14399 x-x- 
+ 01092 ----------------------------------------------------x--x-------x-------------------- 
+ 01176 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01260 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01344 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01428 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01512 -------------------------------------------------------------------x---------------- 
+ 01596 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01680 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01764 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01848 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01932 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 02016 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 02100 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 02184 -----------------------------------------------------xx--------x-------------------- 
+ 02268 ------------------------------------------------------------------------------------ 
+Pin #21 Node 32 ,42  14370 Mode  xx-  14403 xxxx 
+ 02352 ----x-------x--------x------x-------x----------------xx-------x--------------------- 
+ 02436 ----x-------x----------------x------x----------------xx-------x--------------------- 
+ 02520 ----x-------x------------------------x---------------xx-------x--------------------- 
+ 02604 -------------x-------x------x-------x----------------xx-------x--------------------- 
+ 02688 -------------x---------------x------x----------------xx-------x--------------------- 
+ 02772 -------------x-----------------------x---------------xx-------x--------------------- 
+ 02856 -------------x---------------------------------------x-x------x--------------------- 
+ 02940 ----x------------------------------------------------x-x------x--------------------- 
+ 03024 -------------x---------------------------------------xx--------x-------------------- 
+ 03108 ----x------------------------------------------------xx--------x-------------------- 
+ 03192 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 03276 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 03360 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 03444 --------------------------------------------------------------------------x--------- 
+ 03528 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 03612 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 03696 ------------------------------------------------------------------------------------ 
+Pin #20 Node 31 ,41  14373 Mode  x--  14407 xxxx 
+ 03780 ---------------------x------x-------x----------------x--------x--------------------- 
+ 03864 ----------------------------------------------------x------x---x-------------------- 
+ 03948 -------------------------------------x---------------xx-------x--------------------- 
+ 04032 -----------------------------x-----------------------xx-------x--------------------- 
+ 04116 -----x------x----------------------------------------x------------------------------ 
+ 04200 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 04284 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 04368 -------------x------x-------x-------x----------------xx-------x------x-------------- 
+ 04452 ----x---------------x-------x-------x----------------xx-------x------x-------------- 
+ 04536 ----------------------------------------------------x------x---x-------------------- 
+ 04620 ----------------------------------------------------x--x-------x-------------------- 
+ 04704 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 04788 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 04872 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 04956 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 05040 --------------------------------------------------------------------------x--------- 
+ 05124 --------------------------------------------------------------------------x--------- 
+ 05208 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 05292 ------------------------------------------------------------------------------------ 
+Pin #19 Node 30 ,40  14376 Mode  xx-  14411 -xxx 
+ 05376 --------------------------------------x--------------x-x------x--------------------- 
+ 05460 ----------------------------------------------x-----x------------------------------- 
+ 05544 ----------------------------------------------x----------------x-------------------- 
+ 05628 ----------------------------------------------x-------x----------------------------- 
+ 05712 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 05796 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 05880 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 05964 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06048 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06132 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06216 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06300 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06384 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06468 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06552 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06636 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06720 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06804 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06888 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 06972 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 07056 ------------------------------------------------------------------------------------ 
+Pin #18 Node 29 ,39  14379 Mode  x--  14415 --x- 
+ 07140 ------------------------------x----------------------x-x------x--------------------- 
+ 07224 --------------------------------------x-------------x------------------------------- 
+ 07308 --------------------------------------x------------------------x-------------------- 
+ 07392 --------------------------------------x---------------x----------------------------- 
+ 07476 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 07560 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 07644 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 07728 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 07812 --------------------x-------x------------------------------------------------------- 
+ 07896 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 07980 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 08064 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 08148 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 08232 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 08316 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 08400 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 08484 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 08568 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 08652 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 08736 -----------------------------------------------------xx--------x-------------------- 
+ 08820 ------------------------------------------------------------------------------------ 
+Pin #17 Node 28 ,38  14382 Mode  x--  14419 --x- 
+ 08904 ----------------------x------------------------------x-x------x--------------------- 
+ 08988 ------------------------------x---------------------x------------------------------- 
+ 09072 ------------------------------x--------------------------------x-------------------- 
+ 09156 ------------------------------x-----------------------x----------------------------- 
+ 09240 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 09324 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 09408 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 09492 --------------------x--------------------------------------------------------------- 
+ 09576 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 09660 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 09744 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 09828 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 09912 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 09996 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 10080 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 10164 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 10248 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 10332 -----------------------------------------------------xx--------x-------------------- 
+ 10416 ------------------------------------------------------------------------------------ 
+Pin #16 Node 27 ,37  14385 Mode  x--  14423 --x- 
+ 10500 --------------x--------------------------------------x-x------x--------------------- 
+ 10584 ----------------------x-----------------------------x------------------------------- 
+ 10668 ----------------------x----------------------------------------x-------------------- 
+ 10752 ----------------------x-------------------------------x----------------------------- 
+ 10836 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 10920 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 11004 ------------------------------------------------------------------------------------ 
+ 11088 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 11172 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 11256 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 11340 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 11424 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 11508 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 11592 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 11676 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 11760 -----------------------------------------------------xx--------x-------------------- 
+ 11844 ------------------------------------------------------------------------------------ 
+Pin #15 Node 26 ,36  14388 Mode  x--  14427 -xxx 
+ 11928 ------x----------------------------------------------x-x------x--------------------- 
+ 12012 --------------x-------------------------------------x------------------------------- 
+ 12096 --------------x------------------------------------------------x-------------------- 
+ 12180 --------------x---------------------------------------x----------------------------- 
+ 12264 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 12348 ----x--------x----------------------------------------------------x---------------x- 
+ 12432 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 12516 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 12600 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 12684 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 12768 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 12852 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 12936 ---------------------------------------------------------------------------x-------- 
+ 13020 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 13104 ------------------------------------------------------------------------------------ 
+Pin #14 Node 25 ,35  14391 Mode  x--  14431 -xxx 
+ 13188 -----------------------------------------------------x-x------x----x---------------- 
+ 13272 ------x---------------------------------------------x------------------------------- 
+ 13356 ------x--------------------------------------------------------x-------------------- 
+ 13440 ------x-----------------------------------------------x----------------------------- 
+ 13524 -------------x-----------------------------------------------------x--------------x- 
+ 13608 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 13692 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 13776 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 13860 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 13944 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 14028 ---------------------------------------------------------------------------x-------- 
+ 14112 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 14196 ------------------------------------------------------------------------------------ 
+
+
+LEGEND    X : fuse not blown 
+          - : fuse blown 
+
+===============================================================================
+                                 Chip Diagram
+===============================================================================
+
+                               ______________
+                              |    Serial    |
+                     SCLK x---|1           24|---x Vcc                      
+                     MCLK x---|2           23|---x Busy                     
+                      SDX x---|3           22|---x DxVal                    
+                   accept x---|4           21|---x K1                       
+                          x---|5           20|---x K0                       
+                          x---|6           19|---x D5                       
+                          x---|7           18|---x D4                       
+                          x---|8           17|---x D3                       
+                          x---|9           16|---x D2                       
+                          x---|10          15|---x D1                       
+                          x---|11          14|---x D0                       
+                      GND x---|12          13|---x                          
+                              |______________|
+

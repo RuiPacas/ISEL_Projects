@@ -1,0 +1,114 @@
+Name     Key Decode ;
+PartNo   00 ;
+Date     22/02/2018 ;
+Revision 01 ;
+Designer Engineer ;
+Company  CCISEL ;
+Assembly None ;
+Location  ;
+Device   v750c ;
+
+/* *************** INPUT PINS *********************/
+PIN     1 = CLK                      ; /*                                 */
+PIN     [3..6]=[E0..3]               ; /*                                 */
+PIN     8 = ACK                      ; /*                                 */
+
+                               
+
+/* *************** OUTPUT PINS *********************/ 
+PIN         14 = Dval 			     ;
+PIN 	     15 = Kpress			     ;
+PIN         16 = Wreg			     ;
+PIN         [17..19] = [D0..2]                ; 
+PIN 	     [20..23] = [T0..3]    ;                                                          
+PINNODE     [31,32] = [K0,K1] 	    	     ;
+PINNODE     [33,34] = [X0,X1]                 ; 
+
+
+
+/*Key Scan*/
+
+/*Decoder */
+
+D0 = !(!T0 & !T1);
+D1=  !(T0 & !T1);
+D2 = !(!T0 & T1);
+
+
+/* Counter */
+
+[T0..1].sp = 'b'0 ;
+[T0..1].ar = 'b'0;
+[T0..1].CK = !CLK;
+T0.t = Kscan0;
+T1.t= T0&Kscan0;
+
+/*PENC*/
+
+Kpress=!E0#!E1#!E2#!E3;
+
+Y0=(!E1&E2)#!E3;
+Y1=!E3#!E2;
+
+
+/*Registo*/
+
+[T2,T3].sp='b'0;
+[T2,T3].ar='b'0;
+[T2,T3].CK = Kscan1;
+[T2,T3].d = [Y0,Y1];
+
+
+/*Key Control*/
+
+/*Flip Flop tipo D*/
+
+[X0..1].sp = 'b'0;
+[X0..1].ar= 'b'0;
+[X0..1].CK = CLK;
+
+sequence [X0,X1]{
+Present 0
+	out Kscan0;
+	if Kpress next 1;
+	default next 0;
+	
+Present 1 
+	out Kval,Kscan1;
+	if Kack next 2;
+	default next 1;
+
+Present 2 
+	if !Kack&!Kpress next 0 ;
+	default next 2;
+}
+
+/*Key Buffer */
+
+DAV = Kval ;
+Kack = DAC ;
+
+/*Key Buffer Control*/
+[K0..1].sp='b'0;
+[K0..1].ar ='b'0;
+[K0..1].CK= !CLK;
+
+
+
+sequence [K0,K1]{
+present 0
+	if DAV next 1;
+	default next 0;
+present 1 
+	out DAC,Wreg;
+	next 2;
+present 2 
+	out Dval;
+	if ACK next 3;
+	default next 2;
+present 3
+	if !ACK next 0;
+	default next 3;		
+}
+
+

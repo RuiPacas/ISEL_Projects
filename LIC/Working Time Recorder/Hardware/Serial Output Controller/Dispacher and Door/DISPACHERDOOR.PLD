@@ -1,0 +1,88 @@
+Name     DispacherDoor ;
+PartNo   00 ;
+Date     03/05/2018 ;
+Revision 01 ;
+Designer Engineer ;
+Company  CCISEL ;
+Assembly None ;
+Location  ;
+Device   v750c ;
+
+/* *************** INPUT PINS *********************/
+PIN    1 =  MCLK                       ; /*                                 */ 
+PIN    2 =  Dval                       ; /*                                 */ 
+PIN   [3,4] = [Din0,Din1]            ; /*                                 */ 
+PIN    5 = Sclose;
+PIN    6 = Sopen;
+PIN    7 = Psensor;	
+
+/* *************** OUTPUT PINS *********************/
+PIN     14=Wrd                         ; /*                                 */ 
+PIN     15=Wrl                         ; /*                                 */ 
+PIN     16=DispDone                        ; /*                                 */ 
+PIN     17=DoorDone 				; 
+PIN     18 = OpennClose			;
+PIN 	 19 = On				;
+PIN 	 [20,21,22] = [C0,C1,C2]		;
+PINNODE     [25,26,27]=[D0,D1,D2]             ;
+
+
+[D0..2].ck= MCLK ;
+[D0..2].ar= 'b'0;
+[D0..2].sp= 'b'0;
+
+Sequence [D0..2] {
+Present 0
+ 	if Dval & Din0 next 1; 
+	if Dval & !Din0 next 2; 
+	default next 0;
+Present 1
+	out Wrl;
+ 	default next 4;
+Present 2
+	out Wrd;
+	if Finish next 3;
+	default next 2;
+Present 3
+	if !Finish next 4;
+	default next 3;
+Present 4
+	out DispDone;
+	if !Dval next 0;
+	default next 3;	
+}
+
+Wr=Wrd;
+Finish=DoorDone;
+
+[C0..2].ck= !MCLK ;
+[C0..2].ar= 'b'0;
+[C0..2].sp= 'b'0;
+
+Sequence [C0..2] {
+Present 0
+ 	if Wr & Din1 next 1; 
+	if Wr & !Din1 next 2; 
+	default next 0;
+Present 1
+ 	out On,OpennClose;
+	if Sopen next 4;
+	default next 1;
+Present 2
+ 	out On;
+	if Sclose next 4;
+	if !Sclose & Psensor next 3;
+	default next 2;	
+
+Present 3
+ 	out On,OpennClose;
+	if Sopen next 2;
+	default next 3;
+
+Present 4
+ 	out DoorDone;
+	if !Wr next 0;
+	default next 4;
+}
+
+

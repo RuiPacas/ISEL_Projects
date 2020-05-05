@@ -1,0 +1,39 @@
+
+{{#with this}}
+  <h3> Group Information</h3>
+  <input class="form-control mb-2" type="text" id="groupName" value={{name}}>
+  <input class="form-control mb-2" type="text" id="groupDescription" value={{description}}>
+  <button class="btn btn-success" id="editGroupButton">Save Changes</button>
+
+  <h3> Search Games Between : </h3>
+
+  <input class="form-control mb-2" type="number" id="minTime"  placeholder="Minimum Time">
+  <input class="form-control mb-2" type="number" id="maxTime" placeholder="Max Time">
+  <button class="btn btn-secondary" id="searchGroupGamesBetweenMinAndMaxTime">Search</button>
+
+  <h2> Group Games </h2>
+  <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+           {{#each games}}
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src='{{image_url}}' alt="game image cap">
+                <div class="card-body">
+                  <p class="card-text">{{name}}</p>
+                  <p class="card-text">{{description}}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button class="deleteGameOfGroup btn btn-sm btn-outline-secondary" id='{{id}}'>Remove</button>
+                    </div>
+                    <small class="text-muted">Max Playtime : {{max_playtime}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+
+          </div>
+        </div>
+</div>
+{{/with}}

@@ -1,0 +1,149 @@
+LISTING FOR LOGIC DESCRIPTION FILE: SERIAL RECEIVER.pld              Page 1
+
+CUPL(WM): Universal Compiler for Programmable Logic
+Version 5.0a Serial# 60008009
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+Created Fri May 18 16:46:26 2018
+
+  1:Name     Serial Receiver ;
+  2:PartNo   00 ;
+  3:Date     22/03/2018 ;
+  4:Revision 01 ;
+  5:Designer Engineer ;
+  6:Company  CCISEL ;
+  7:Assembly None ;
+  8:Location  ;
+  9:Device   v750c ;
+ 10:
+ 11:/* *************** INPUT PINS *********************/
+ 12:PIN    1 = SCLK                          ; /*                                 */ 
+ 13:PIN    2 = MCLK ;
+ 14:PIN    3 = SDX                  ; /*                                 */
+ 15:PIN    4=  accept                ; /*                                 */ 
+ 16:
+ 17:/* *************** OUTPUT PINS *********************/
+ 18:PIN    [14..19] = [D0..5]              ; /*                                 */ 
+ 19:PIN    [20..21] = [K0..1]              ; /*                                 */ 
+ 20:PINNODE 31 = K2 ; 
+ 21:PINNODE 33 = Y0;
+ 22:PIN    22  = DxVal;
+ 23:PIN    23  = Busy;
+ 24:PINNODE   [25,26] = [X0,X1]            ; /*                                 */ 
+ 25:PINNODE   [27,28,29] = [T0,T1,T2]              ; /*                                 */ 
+ 26:
+ 27:
+ 28:
+ 29:
+ 30:
+ 31:/*Shift Register*/
+ 32:
+ 33:[D0..5].ckmux= SCLK;
+ 34:[D0..5].ar= 'b'0;
+ 35:[D0..5].sp= 'b'0;
+ 36:
+ 37:D0.d = !Wr&D0#Wr&SDX;
+ 38:D1.d = !Wr&D1#Wr&D0;
+ 39:D2.d = !Wr&D2#Wr&D1;
+ 40:D3.d = !Wr&D3#Wr&D2;
+ 41:D4.d = !Wr&D4#Wr&D3;
+ 42:D5.d = !Wr&D5#Wr&D4;
+ 43:
+ 44:/*COUNTER*/
+ 45:
+ 46:[T0..2].ckmux= SCLK;
+ 47:[T0..2].ar= init;
+ 48:[T0..2].sp= 'b'0;
+ 49:
+ 50:T0.t= 'b'1;
+ 51:T1.t= 'b'1 &T0;
+ 52:T2.t= 'b'1 &T0&T1;
+ 53:
+
+LISTING FOR LOGIC DESCRIPTION FILE: SERIAL RECEIVER.pld              Page 2
+
+CUPL(WM): Universal Compiler for Programmable Logic
+Version 5.0a Serial# 60008009
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+Created Fri May 18 16:46:26 2018
+
+ 54:dFlag=!T0&T1&T2;
+ 55:pFlag=T0&T1&T2;
+ 56:
+ 57:
+ 58:/*SERIAL CONTROL*/
+ 59:
+ 60:[X0..1].ck= MCLK ;
+ 61:[X0..1].ar= 'b'0;
+ 62:[X0..1].sp= 'b'0;
+ 63:
+ 64:[K0..2].ck= !MCLK ;
+ 65:[K0..2].ar= 'b'0;
+ 66:[K0..2].sp= 'b'0;
+ 67:
+ 68:
+ 69:
+ 70:
+ 71:Sequence [X0..1] {
+ 72:Present 0
+ 73:        if !SCLK&SDX next 1;
+ 74:        default next 0;
+ 75:Present 1
+ 76:         if !SCLK&!SDX next 2;
+ 77:         if SCLK next 0;
+ 78:        if !SCLK&SDX next 1;
+ 79:Present 2
+ 80:        out Start;
+ 81:        next 0;
+ 82:}
+ 83:
+ 84:Sequence [K0..2] {
+ 85:Present 0
+ 86:        if Start next 1;
+ 87:         default next 0;
+ 88:Present 1
+ 89:        out init;
+ 90:        if !Start next 2;
+ 91:        default next 1;
+ 92:Present 2
+ 93:         out Wr;
+ 94:        if !Start&dFlag next 3;
+ 95:        if Start next 1;
+ 96:        if !Start&!dFlag next 2;
+ 97:Present 3
+ 98:        if Start next 1;
+ 99:        if !Start&!pFlag next 3;
+100:        if !Start&pFlag&!RxErr next 4;
+101:        if !Start&pFlag&RxErr next 0;
+102:Present 4
+103:        out DxVal,Busy;
+104:        if accept next 5;
+105:        default next 4;
+106:Present 5
+107:        out Busy;
+
+LISTING FOR LOGIC DESCRIPTION FILE: SERIAL RECEIVER.pld              Page 3
+
+CUPL(WM): Universal Compiler for Programmable Logic
+Version 5.0a Serial# 60008009
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+Created Fri May 18 16:46:26 2018
+
+108:         if accept next 5;
+109:         default next 0;
+110:}
+111:
+112: 
+113:/*PARITY CHECK*/
+114:Y0.ckmux= SCLK ;
+115:Y0.ar= init;
+116:Y0.sp= 'b'0;
+117:
+118:Y0.t= SDX;
+119:RxErr=Y0;
+120:
+121:
+
+
+
+Jedec Fuse Checksum       (cc72)
+Jedec Transmit Checksum   (96b2)

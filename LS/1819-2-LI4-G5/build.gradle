@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'application'
+}
+
+checkstyle {
+    configFile file("checkstyle.xml")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.+'
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.12.v20180830'
+    compile group: 'org.apache.commons', name: 'commons-text', version: '1.+'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.+'
+    runtime group: 'org.slf4j', name: 'slf4j-simple', version: '1.+'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+mainClassName = 'pt.isel.ls.HerokuApp'
+task stage(dependsOn: ['clean', 'installDist'])
+
+
+String db = 'LS', host = 'localhost', user = 'postgres'
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+task dropDb(type: Exec) {
+    commandLine 'dropdb', '--if-exists', '-h', host, '-U', user, db
+    ext.output = {
+        return standardOutput.toString()
+    }
+}
+task createDb(type: Exec) {
+    commandLine 'createdb', '-h', host, '-U', user, db
+    ext.output = {
+        return standardOutput.toString()
+    }
+}
+createDb.dependsOn(dropDb)
+task initSchema(type: Exec) {
+    commandLine 'psql', '-h', host, '-U', user, '-d', db, '-f', 'src/test/sql/create.sql'
+    ext.output = {
+        return standardOutput.toString()
+    }
+}
+initSchema.dependsOn(createDb)

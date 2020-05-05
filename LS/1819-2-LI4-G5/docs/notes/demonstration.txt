@@ -1,0 +1,20 @@
+1º  create 2phasedemo folder
+    git clone https://github.com/isel-leic-ls/1819-2-LI4-G5.git 
+    cd ./1819-2-LI4-G5
+2º  git checkout 0.2.0
+3º  gradlew clean
+    gradlew build
+4º  gradlew clean
+    gradlew build
+
+/*  Por lapso não foi implementada a possibilidade de receber um comando como argumento e terminar a aplicação. */
+5º  java -cp build\classes\java\main;vendor\main\* pt.isel.ls.App	
+	OPTION /
+	EXIT /
+
+6º  java -cp build\classes\java\main;vendor\main\* pt.isel.ls.App
+	GET /courses
+	EXIT /
+
+7º  java -cp build\classes\java\main;vendor\main\* pt.isel.ls.App
+8º  

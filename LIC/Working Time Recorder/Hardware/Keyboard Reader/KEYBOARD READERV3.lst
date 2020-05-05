@@ -1,0 +1,144 @@
+LISTING FOR LOGIC DESCRIPTION FILE: KEYBOARD READERV3.pld            Page 1
+
+CUPL(WM): Universal Compiler for Programmable Logic
+Version 5.0a Serial# 60008009
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+Created Thu Mar 22 11:15:21 2018
+
+  1:Name     Key Decode ;
+  2:PartNo   00 ;
+  3:Date     22/02/2018 ;
+  4:Revision 01 ;
+  5:Designer Engineer ;
+  6:Company  CCISEL ;
+  7:Assembly None ;
+  8:Location  ;
+  9:Device   v750c ;
+ 10:
+ 11:/* *************** INPUT PINS *********************/
+ 12:PIN     1 = CLK                      ; /*                                 */
+ 13:PIN     [3..6]=[E0..3]               ; /*                                 */
+ 14:PIN     8 = ACK                      ; /*                                 */
+ 15:
+ 16:                               
+ 17:
+ 18:/* *************** OUTPUT PINS *********************/ 
+ 19:PIN         14 = Dval                        ;
+ 20:PIN       15 = Kpress                        ;
+ 21:PIN         16 = Wreg                        ;
+ 22:PIN         [17..19] = [D0..2]                ; /* */
+ 23:PIN       [20..23] = [T0..3]    ;                                                          
+ 24:PINNODE     [31,32] = [K0,K1]                ;
+ 25:PINNODE     [33,34] = [X0,X1]                 ; 
+ 26:
+ 27:
+ 28:
+ 29:/*Key Scan*/
+ 30:
+ 31:/*Decoder */
+ 32:
+ 33:D0 = !(!T0 & !T1);
+ 34:D1=  !(T0 & !T1);
+ 35:D2 = !(!T0 & T1);
+ 36:
+ 37:
+ 38:/* Counter */
+ 39:
+ 40:[T0..1].sp = 'b'0 ;
+ 41:[T0..1].ar = 'b'0;
+ 42:[T0..1].CK = !CLK;
+ 43:T0.t = Kscan0;
+ 44:T1.t= T0&Kscan0;
+ 45:
+ 46:/*PENC*/
+ 47:
+ 48:Kpress=!E0#!E1#!E2#!E3;
+ 49:
+ 50:Y0=(!E1&E2)#!E3;
+ 51:Y1=!E3#!E2;
+ 52:
+ 53:
+
+LISTING FOR LOGIC DESCRIPTION FILE: KEYBOARD READERV3.pld            Page 2
+
+CUPL(WM): Universal Compiler for Programmable Logic
+Version 5.0a Serial# 60008009
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+Created Thu Mar 22 11:15:21 2018
+
+ 54:/*Registo*/
+ 55:
+ 56:[T2,T3].sp='b'0;
+ 57:[T2,T3].ar='b'0;
+ 58:[T2,T3].CK = Kscan1;
+ 59:[T2,T3].d = [Y0,Y1];
+ 60:
+ 61:
+ 62:/*Key Control*/
+ 63:
+ 64:/*Flip Flop tipo D*/
+ 65:
+ 66:[X0..1].sp = 'b'0;
+ 67:[X0..1].ar= 'b'0;
+ 68:[X0..1].CK = CLK;
+ 69:
+ 70:sequence [X0,X1]{
+ 71:Present 0
+ 72:        out Kscan0;
+ 73:        if Kpress next 1;
+ 74:        default next 0;
+ 75:        
+ 76:Present 1 
+ 77:        out Kval,Kscan1;
+ 78:        if Kack next 2;
+ 79:        default next 1;
+ 80:
+ 81:Present 2 
+ 82:        if !Kack&!Kpress next 0 ;
+ 83:        default next 2;
+ 84:}
+ 85:
+ 86:/*Key Buffer */
+ 87:
+ 88:DAV = Kval ;
+ 89:Kack = DAC ;
+ 90:
+ 91:/*Key Buffer Control*/
+ 92:[K0..1].sp='b'0;
+ 93:[K0..1].ar ='b'0;
+ 94:[K0..1].CK= !CLK;
+ 95:
+ 96:
+ 97:
+ 98:sequence [K0,K1]{
+ 99:present 0
+100:        if DAV next 1;
+101:        default next 0;
+102:present 1 
+103:        out DAC,Wreg;
+104:        next 2;
+105:present 2 
+106:        out Dval;
+107:        if ACK next 3;
+
+LISTING FOR LOGIC DESCRIPTION FILE: KEYBOARD READERV3.pld            Page 3
+
+CUPL(WM): Universal Compiler for Programmable Logic
+Version 5.0a Serial# 60008009
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+Created Thu Mar 22 11:15:21 2018
+
+108:        default next 2;
+109:present 3
+110:        if !ACK next 0;
+111:        default next 3;         
+112:}
+113:
+114:
+115:
+116:
+
+
+
+Jedec Fuse Checksum       (c6c5)
+Jedec Transmit Checksum   (79e2)

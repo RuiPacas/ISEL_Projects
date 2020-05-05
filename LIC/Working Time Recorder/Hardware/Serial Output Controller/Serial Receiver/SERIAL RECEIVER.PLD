@@ -1,0 +1,119 @@
+Name     Serial Receiver ;
+PartNo   00 ;
+Date     22/03/2018 ;
+Revision 01 ;
+Designer Engineer ;
+Company  CCISEL ;
+Assembly None ;
+Location  ;
+Device   v750c ;
+
+/* *************** INPUT PINS *********************/
+PIN    1 = SCLK 	      		 ; /*                                 */ 
+PIN    2 = MCLK ;
+PIN    3 = SDX	  	        ; /*                                 */
+PIN    4=  accept	       	 ; /*                                 */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN    [14..19] = [D0..5]	       ; /*                                 */ 
+PIN    [20..21] = [K0..1]	       ; /*                                 */ 
+PINNODE 31 = K2 ; 
+PINNODE 33 = Y0;
+PIN    22  = DxVal;
+PIN    23  = Busy;
+PINNODE   [25,26] = [X0,X1]	       ; /*                                 */ 
+PINNODE   [27,28,29] = [T0,T1,T2]	       ; /*                                 */ 
+
+
+
+
+
+/*Shift Register*/
+
+[D0..5].ckmux= SCLK;
+[D0..5].ar= 'b'0;
+[D0..5].sp= 'b'0;
+
+D0.d = !Wr&D0#Wr&SDX;
+D1.d = !Wr&D1#Wr&D0;
+D2.d = !Wr&D2#Wr&D1;
+D3.d = !Wr&D3#Wr&D2;
+D4.d = !Wr&D4#Wr&D3;
+D5.d = !Wr&D5#Wr&D4;
+
+/*COUNTER*/
+
+[T0..2].ckmux= SCLK;
+[T0..2].ar= init;
+[T0..2].sp= 'b'0;
+
+T0.t= 'b'1;
+T1.t= 'b'1 &T0;
+T2.t= 'b'1 &T0&T1;
+
+dFlag=!T0&T1&T2;
+pFlag=T0&T1&T2;
+
+
+/*SERIAL CONTROL*/
+
+[X0..1].ck= MCLK ;
+[X0..1].ar= 'b'0;
+[X0..1].sp= 'b'0;
+
+[K0..2].ck= !MCLK ;
+[K0..2].ar= 'b'0;
+[K0..2].sp= 'b'0;
+
+
+
+
+Sequence [X0..1] {
+Present 0
+ 	if !SCLK&SDX next 1;
+ 	default next 0;
+Present 1
+	 if !SCLK&!SDX next 2;
+	 if SCLK next 0;
+ 	if !SCLK&SDX next 1;
+Present 2
+ 	out Start;
+ 	next 0;
+}
+
+Sequence [K0..2] {
+Present 0
+ 	if Start next 1;
+	 default next 0;
+Present 1
+	out init;
+ 	if !Start next 2;
+ 	default next 1;
+Present 2
+	 out Wr;
+ 	if !Start&dFlag next 3;
+ 	if Start next 1;
+ 	if !Start&!dFlag next 2;
+Present 3
+	if Start next 1;
+ 	if !Start&!pFlag next 3;
+ 	if !Start&pFlag&!RxErr next 4;
+ 	if !Start&pFlag&RxErr next 0;
+Present 4
+ 	out DxVal,Busy;
+ 	if accept next 5;
+ 	default next 4;
+Present 5
+ 	out Busy;
+	 if accept next 5;
+	 default next 0;
+}
+
+ 
+/*PARITY CHECK*/
+Y0.ckmux= SCLK ;
+Y0.ar= init;
+Y0.sp= 'b'0;
+
+Y0.t= SDX;
+RxErr=Y0;

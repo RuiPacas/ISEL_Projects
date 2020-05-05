@@ -1,0 +1,2 @@
+POSTGRES=jdbc:postgresql://localhost:5432/LS?user=LS-G5&password=12345
+PGPASSWORD=12345

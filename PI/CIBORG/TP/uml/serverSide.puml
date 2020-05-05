@@ -1,0 +1,38 @@
+@startuml
+package "Server-Side"{
+
+
+    package "Server" {
+      [ciborg-server.js]
+      [ciborg-server-tests.js] ..> [ciborg-server.js] : uses
+      [ciborg-server-production.js] ..> [ciborg-server.js] : uses
+    }
+    package "API" {
+      [ciborg-web-api.js]
+    }
+    package "service" {
+        [ciborg-service.js]
+    }
+
+    cloud "board-games-data"{
+        [board-games-data.js]
+    }
+
+    database "elasticsearch" {
+        [ciborg-db.js]
+    }
+
+    [ciborg-web-api.js]  ..> [ciborg-server.js] : register routes
+    [ciborg-web-api.js] ..> [ciborg-service.js] : uses
+    [ciborg-web-api.js] ..> [ciborg-service.js] : uses
+    [ciborg-server.js]  ..> express : uses
+    [ciborg-server.js]  ..> passport : uses
+    [ciborg-service.js] ..> [board-games-data.js] : uses
+    [ciborg-service.js] ..> [ciborg-db.js] : uses
+    [board-games-data.js] ..> request_promise : uses
+    [ciborg-db.js] ..> request_promise : uses
+
+}
+
+
+@enduml

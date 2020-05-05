@@ -1,0 +1,5 @@
+git clone https://github.com/isel-leic-ls/1819-2-LI4-G5.git
+cd .\1819-2-LI4-G5\
+gradlew clean build
+gradlew stage
+java -cp build\classes\java\main;build\install\S1819-2-LI4-G5\lib\* pt.isel.ls.App

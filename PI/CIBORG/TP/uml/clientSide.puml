@@ -1,0 +1,38 @@
+@startuml
+
+package "Client-Side"{
+
+    [route-manager]
+
+    package "Controller" {
+        [ciborg-controller.js]
+    }
+    package "Model" {
+        [ciborg-data.js]
+    }
+    package "View" {
+        package "templates"{
+           [home.hbs]
+           [groups.hbs]
+           [...]
+        }
+        [templates.js]
+        [views.js]
+    }
+
+    [routes.js] ..> [ciborg-controller.js] : has many
+    [routes.js] ..> [views.js] : has many
+    [state-router.js]
+
+    [ciborg-controller.js] .down.> [ciborg-data.js] : uses
+    [ciborg-data.js]   ..> server : makes requests
+    [templates.js] ..> handlebars : uses
+    [templates.js] ..> templates : uses
+    [views.js] ..> [templates.js] : use
+
+    [ciborg-controller.js] ..> [route-manager] : use
+    [views.js] ..> [route-manager] : use
+    [state-router.js] .left.> [route-manager] : has
+    [state-router.js] ..>  [routes.js] : use
+}
+@enduml

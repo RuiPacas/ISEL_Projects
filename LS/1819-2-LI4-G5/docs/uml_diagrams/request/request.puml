@@ -1,0 +1,42 @@
+@startuml
+package request{
+class Request{
+    +Request(String request)
+    +getMethod()::Method
+    +getPath()::Path
+    +getParameters()::Parameters
+    +getHeaders()::Headers
+}
+enum Method{
+    GET
+    POST
+    EXIT
+    OPTION
+}
+class Path{
+     -List<String> pathList
+     +Path(String path)
+     +getPathList() :: List<String>
+}
+
+class Parameters{
+    -HashMap<String, LinkedList<String>> parametersMap
+    +Parameters(String Parameter)
+    +[static] isValidParameter(String parameter)::boolean
+    +getParameter()::Parameter
+    +getParametersMap()::HashMap<String, LinkedList<String>>
+}
+class Headers{
+    -HashMap<String, String> headersMap
+    +Headers(String Header
+    + [static] defaultHeader()
+
+
+}
+
+Request  *-right- Method : method
+Request  *-down- Path : path
+Request  *-down- Parameters : parameters
+Request  *-down- Headers : headers
+}
+@enduml

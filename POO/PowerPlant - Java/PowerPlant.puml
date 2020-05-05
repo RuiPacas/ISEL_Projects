@@ -1,0 +1,90 @@
+@startuml
+
+package "MODEL"{
+    package "CELLS"{
+    class Branch{
+    canLink()
+    }
+    class Curve{
+    canLink()
+    }
+    class House{
+    canLink()
+    connect()
+    }
+    class Line{
+    canLink()
+    }
+    class Source{
+    canLink()
+    isSource()
+    connect()
+    }
+    class Space
+    }
+ConnectedCells <|-- Branch
+ConnectedCells <|-- Curve
+ConnectedCells <|-- House
+ConnectedCells <|-- Line
+ConnectedCells <|-- Source
+Cell <|-- Space
+Cell <|-- ConnectedCells
+Plant *-- Cell: -model
+ConnectedCells *-- Direction: -dir
+abstract class Cell{
+newInstance(char)
+}
+abstract class ConnectedCells{
+connect()
+isCompleted()
+rotate()
+setPower()
+distributePower()
+resetPower()
+}
+enum Direction{
+random()
+next()
+opposite()
+}
+class Plant{
+setListener()
+notifyChanged()
+touch()
+spreadPower()
+clearPower()
+}
+
+}
+
+
+
+
+package "VIEW"{
+    package "VCELLS"{
+    class vHouse{
+    paint()
+    }
+    class vLink{
+    paint()
+    }
+    class vSource{
+    paint()
+    }
+    class vSpace{
+    paint()
+    }
+    }
+CellTile <|-- vHouse
+CellTile <|-- vLink
+CellTile <|-- vSource
+CellTile <|-- vSpace
+Cell <-- CellTile: cell
+abstract class CellTile{
+newInstance()
+paint()
+repaint()
+}
+
+
+@enduml

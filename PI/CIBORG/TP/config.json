@@ -1,0 +1,18 @@
+{
+    "server" : {
+        "port" : "8080",
+        "base_address" : "/ciborg/api"
+    },
+    "db": {
+        "hostname": "localhost",
+        "port": "9200",
+        "get_size" : "1000",
+        "groupsIndex" : "/groups",
+        "usersIndex" : "/users"
+    },
+    "api" :{
+        "CLIENT_ID" : "sCfolwMJNj",
+        "HOST" :"www.boardgameatlas.com/api/"
+    }
+
+}

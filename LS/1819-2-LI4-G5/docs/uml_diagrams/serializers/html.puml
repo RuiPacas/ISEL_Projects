@@ -1,0 +1,27 @@
+@startuml
+package serializers.html{
+interface Node {
+    +print(PrintStream out)::void
+}
+class TextNode {
+     +print(PrintStream out)::void
+}
+class ElementNode {
+     -String name
+     -List<Node> nodes
+     -List<Attribute> attributes
+     +print(PrintStream out)::void
+}
+
+class Attribute {
+     -String name
+     -String value
+     +ToString()::String
+}
+
+Node<|.down.TextNode
+Node<|.down.ElementNode
+ElementNode "0*" *-up- Node : nodes
+ElementNode "   0*" *-left-  Attribute :   attributes
+}
+@enduml
