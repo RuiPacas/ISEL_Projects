@@ -1,5 +1,5 @@
 # ISEL_Projects
-The repository where I publish some of the projects that I developed with my group (https://github.com/RodrasSilva and https://github.com/MargaridaNunes) during my course.
+The repository where I publish some of the projects that I developed with my group [Rodrigo](https://github.com/RodrasSilva) and [Margarida](https://github.com/MargaridaNunes) during my course.
 
 My contact email : rui.p.pacas@gmail.com
 
